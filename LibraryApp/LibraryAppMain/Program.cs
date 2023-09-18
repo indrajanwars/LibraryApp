@@ -43,13 +43,13 @@
                             break;
 
                         default:
-                            Console.WriteLine("Pilihan tidak valid. Silakan coba lagi.");
+                            ErrorHandler.HandleInvalidInput();
                             break;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Pilihan tidak valid. Silakan coba lagi.");
+                    ErrorHandler.HandleInvalidInput();
                 }
                 Console.ReadLine();
             }
