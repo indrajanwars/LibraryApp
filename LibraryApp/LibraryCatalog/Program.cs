@@ -28,7 +28,6 @@
 
         public void ListBook()
         {
-            Console.WriteLine("== Semua Buku dalam Katalog ==\n");
             foreach (var book in bookscatalog)
             {
                 Console.WriteLine($"Judul: {book.Title}");

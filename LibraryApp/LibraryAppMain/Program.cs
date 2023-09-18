@@ -26,6 +26,7 @@
                             break;
 
                         case 2:
+                            BookRemove();
                             break;
 
                         case 3:
@@ -77,9 +78,31 @@
             }
         }
 
+        static void BookRemove()
+        {
+            Console.Clear();
+            Console.WriteLine("== Hapus Buku ==\n");
+
+            Console.Write("Judul Buku yang Ingin Dihapus: ");
+            string title = Console.ReadLine();
+
+            BookLib bookToRemove = catalog.FindBook(title);
+
+            if (bookToRemove != null)
+            {
+                catalog.RemoveBook(bookToRemove);
+                Console.WriteLine("Buku berhasil dihapus dari katalog.");
+            }
+            else
+            {
+                Console.WriteLine("Buku tidak ditemukan dalam katalog.");
+            }
+        }
+
         static void BookAll()
         {
             Console.Clear();
+            Console.WriteLine("== Semua Buku dalam Katalog ==\n");
             catalog.ListBook();
         }
     }
