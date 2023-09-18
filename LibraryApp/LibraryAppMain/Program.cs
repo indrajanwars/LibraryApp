@@ -66,6 +66,12 @@
             Console.Write("Penulis: ");
             string author = Console.ReadLine();
 
+            if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(author))
+            {
+                ErrorHandler.HandleInvalidInput("Judul dan Penulis tidak boleh kosong.");
+                return;
+            }
+
             Console.Write("Tahun Terbit: ");
             if (int.TryParse(Console.ReadLine(), out int publicationYear))
             {
@@ -79,10 +85,7 @@
                 catalog.AddBook(book);
                 Console.WriteLine("Buku berhasil ditambahkan ke katalog.");
             }
-            else
-            {
-                Console.WriteLine("Tahun terbit tidak valid.");
-            }
+
         }
 
         static void BookRemove()

@@ -7,6 +7,12 @@
             Console.WriteLine("Pilihan tidak valid. Silakan coba lagi.");
         }
 
+        public static void HandleInvalidInput(string message)
+        {
+            Console.WriteLine($"{message}");
+        }
+
+
         public static void HandleInvalidYear()
         {
             Console.WriteLine("Tahun terbit tidak valid.");
