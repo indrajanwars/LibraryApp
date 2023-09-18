@@ -2,6 +2,8 @@
 {
     class LibraryApp
     {
+        private static LibraryCatalog catalog = new();
+
         static void Main()
         {
             while (true)
@@ -20,6 +22,7 @@
                     switch (choice)
                     {
                         case 1:
+                            AddBook();
                             break;
 
                         case 2:
@@ -46,6 +49,30 @@
                     Console.WriteLine("Pilihan tidak valid. Silakan coba lagi.");
                 }
                 Console.ReadLine();
+            }
+        }
+
+        static void AddBook()
+        {
+            Console.Clear();
+            Console.WriteLine("== Tambah Buku ==\n");
+
+            Console.Write("Judul: ");
+            string title = Console.ReadLine();
+
+            Console.Write("Penulis: ");
+            string author = Console.ReadLine();
+
+            Console.Write("Tahun Terbit: ");
+            if (int.TryParse(Console.ReadLine(), out int publicationYear))
+            {
+                BookLib book = new(title, author, publicationYear);
+                catalog.AddBook(book);
+                Console.WriteLine("Buku berhasil ditambahkan ke katalog.");
+            }
+            else
+            {
+                Console.WriteLine("Tahun terbit tidak valid.");
             }
         }
     }
