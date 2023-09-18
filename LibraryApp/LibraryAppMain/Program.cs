@@ -102,7 +102,7 @@
             }
             else
             {
-                Console.WriteLine("Buku tidak ditemukan dalam katalog.");
+                ErrorHandler.HandleBookNotFound();
             }
         }
 
@@ -122,7 +122,7 @@
             }
             else
             {
-                Console.WriteLine("Buku tidak ditemukan dalam katalog.");
+                ErrorHandler.HandleBookNotFound();
             }
         }
 

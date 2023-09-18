@@ -11,5 +11,10 @@
         {
             Console.WriteLine("Tahun terbit tidak valid.");
         }
+
+        public static void HandleBookNotFound()
+        {
+            Console.WriteLine("Buku tidak ditemukan dalam katalog.");
+        }
     }
 }
