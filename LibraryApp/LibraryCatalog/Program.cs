@@ -1,4 +1,4 @@
-﻿namespace LibraryApp.Book
+﻿namespace LibraryApp
 {
     public class LibraryCatalog
     {
