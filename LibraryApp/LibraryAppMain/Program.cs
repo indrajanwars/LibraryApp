@@ -22,7 +22,7 @@
                     switch (choice)
                     {
                         case 1:
-                            AddBook();
+                            BookAdd();
                             break;
 
                         case 2:
@@ -32,6 +32,7 @@
                             break;
 
                         case 4:
+                            BookAll();
                             break;
 
                         case 5:
@@ -52,7 +53,7 @@
             }
         }
 
-        static void AddBook()
+        static void BookAdd()
         {
             Console.Clear();
             Console.WriteLine("== Tambah Buku ==\n");
@@ -74,6 +75,12 @@
             {
                 Console.WriteLine("Tahun terbit tidak valid.");
             }
+        }
+
+        static void BookAll()
+        {
+            Console.Clear();
+            catalog.ListBook();
         }
     }
 }
