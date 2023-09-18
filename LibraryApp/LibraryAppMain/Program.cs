@@ -79,18 +79,23 @@
             }
 
             Console.Write("Tahun Terbit: ");
-            if (int.TryParse(Console.ReadLine(), out int publicationYear))
-            {
-                if (publicationYear < 1900 || publicationYear > DateTime.Now.Year)
-                {
-                    ErrorHandler.HandleInvalidYear();
-                    return;
-                }
+            string yearInput = Console.ReadLine();
 
-                BookLib book = new(title, author, publicationYear);
-                catalog.AddBook(book);
-                Console.WriteLine("Buku berhasil ditambahkan ke katalog.");
+            if (!int.TryParse(yearInput, out int publicationYear))
+            {
+                ErrorHandler.HandleInvalidYear();
+                return;
             }
+
+            if (publicationYear < 1900 || publicationYear > DateTime.Now.Year)
+            {
+                ErrorHandler.HandleInvalidYear();
+                return;
+            }
+
+            BookLib book = new(title, author, publicationYear);
+            catalog.AddBook(book);
+            Console.WriteLine("Buku berhasil ditambahkan ke katalog.");
         }
 
         static void BookRemove()
@@ -99,6 +104,10 @@
             Console.WriteLine("== Hapus Buku ==\n");
 
             catalog.HandleEmptyCatalog();
+            if (catalog.BookCount() == 0)
+            {
+                return;
+            }
 
             Console.Write("Judul Buku yang Ingin Dihapus: ");
             string title = Console.ReadLine();
@@ -122,6 +131,10 @@
             Console.WriteLine("== Cari Buku Berdasarkan Judul ==\n");
 
             catalog.HandleEmptyCatalog();
+            if (catalog.BookCount() == 0)
+            {
+                return;
+            }
 
             Console.Write("Judul Buku yang Dicari: ");
             string title = Console.ReadLine();
