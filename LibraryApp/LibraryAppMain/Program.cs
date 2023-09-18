@@ -30,6 +30,7 @@
                             break;
 
                         case 3:
+                            BookFind();
                             break;
 
                         case 4:
@@ -92,6 +93,26 @@
             {
                 catalog.RemoveBook(bookToRemove);
                 Console.WriteLine("Buku berhasil dihapus dari katalog.");
+            }
+            else
+            {
+                Console.WriteLine("Buku tidak ditemukan dalam katalog.");
+            }
+        }
+
+        static void BookFind()
+        {
+            Console.Clear();
+            Console.WriteLine("== Cari Buku Berdasarkan Judul ==\n");
+
+            Console.Write("Judul Buku yang Dicari: ");
+            string title = Console.ReadLine();
+
+            BookLib foundBook = catalog.FindBook(title);
+
+            if (foundBook != null)
+            {
+                Console.WriteLine($"\nBuku ditemukan:\n\nJudul:{foundBook.Title}\nPenulis: {foundBook.Author}\nTahun Terbit: {foundBook.PublicationYear}");
             }
             else
             {
