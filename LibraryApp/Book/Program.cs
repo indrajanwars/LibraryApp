@@ -1,12 +1,12 @@
-﻿namespace LibraryApp
+﻿namespace LibraryApp.Book
 {
-    public class Book
+    public class BookLib
     {
         public string Title { get; set; }
         public string Author { get; set; }
         public int PublicationYear { get; set; }
 
-        public Book(string title, string author, int publicationYear)
+        public BookLib(string title, string author, int publicationYear)
         {
             Title = title;
             Author = author;
