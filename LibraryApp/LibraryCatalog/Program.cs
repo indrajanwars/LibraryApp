@@ -36,9 +36,19 @@
                 Console.WriteLine("---------------------------");
             }
         }
+
         public int BookCount()
         {
             return bookscatalog.Count;
         }
+
+        public void HandleEmptyCatalog()
+        {
+            if (BookCount() == 0)
+            {
+                Console.WriteLine("Data buku masih kosong. Segera tambahkan buku.");
+            }
+        }
+
     }
 }

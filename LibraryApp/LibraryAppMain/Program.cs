@@ -91,7 +91,6 @@
                 catalog.AddBook(book);
                 Console.WriteLine("Buku berhasil ditambahkan ke katalog.");
             }
-
         }
 
         static void BookRemove()
@@ -99,26 +98,21 @@
             Console.Clear();
             Console.WriteLine("== Hapus Buku ==\n");
 
-            if (catalog.BookCount() == 0)
+            catalog.HandleEmptyCatalog();
+
+            Console.Write("Judul Buku yang Ingin Dihapus: ");
+            string title = Console.ReadLine();
+
+            BookLib bookToRemove = catalog.FindBook(title);
+
+            if (bookToRemove != null)
             {
-                Console.WriteLine("Data buku masih kosong. Segera tambahkan buku.");
+                catalog.RemoveBook(bookToRemove);
+                Console.WriteLine("Buku berhasil dihapus dari katalog.");
             }
             else
             {
-                Console.Write("Judul Buku yang Ingin Dihapus: ");
-                string title = Console.ReadLine();
-
-                BookLib bookToRemove = catalog.FindBook(title);
-
-                if (bookToRemove != null)
-                {
-                    catalog.RemoveBook(bookToRemove);
-                    Console.WriteLine("Buku berhasil dihapus dari katalog.");
-                }
-                else
-                {
-                    ErrorHandler.HandleBookNotFound();
-                }
+                ErrorHandler.HandleBookNotFound();
             }
         }
 
@@ -126,6 +120,8 @@
         {
             Console.Clear();
             Console.WriteLine("== Cari Buku Berdasarkan Judul ==\n");
+
+            catalog.HandleEmptyCatalog();
 
             Console.Write("Judul Buku yang Dicari: ");
             string title = Console.ReadLine();
@@ -146,14 +142,9 @@
         {
             Console.Clear();
             Console.WriteLine("== Semua Buku dalam Katalog ==\n");
-            if (catalog.BookCount() == 0)
-            {
-                Console.WriteLine("Data buku masih kosong. Segera tambahkan buku.");
-            }
-            else
-            {
-                catalog.ListBook();
-            }
+
+            catalog.HandleEmptyCatalog();
+            catalog.ListBook();
         }
     }
 }
