@@ -72,6 +72,12 @@
                 return;
             }
 
+            if (catalog.FindBook(title) != null)
+            {
+                Console.WriteLine("Buku dengan judul yang sama sudah ada dalam katalog.");
+                return;
+            }
+
             Console.Write("Tahun Terbit: ");
             if (int.TryParse(Console.ReadLine(), out int publicationYear))
             {
@@ -93,19 +99,26 @@
             Console.Clear();
             Console.WriteLine("== Hapus Buku ==\n");
 
-            Console.Write("Judul Buku yang Ingin Dihapus: ");
-            string title = Console.ReadLine();
-
-            BookLib bookToRemove = catalog.FindBook(title);
-
-            if (bookToRemove != null)
+            if (catalog.BookCount() == 0)
             {
-                catalog.RemoveBook(bookToRemove);
-                Console.WriteLine("Buku berhasil dihapus dari katalog.");
+                Console.WriteLine("Data buku masih kosong. Segera tambahkan buku.");
             }
             else
             {
-                ErrorHandler.HandleBookNotFound();
+                Console.Write("Judul Buku yang Ingin Dihapus: ");
+                string title = Console.ReadLine();
+
+                BookLib bookToRemove = catalog.FindBook(title);
+
+                if (bookToRemove != null)
+                {
+                    catalog.RemoveBook(bookToRemove);
+                    Console.WriteLine("Buku berhasil dihapus dari katalog.");
+                }
+                else
+                {
+                    ErrorHandler.HandleBookNotFound();
+                }
             }
         }
 
@@ -121,7 +134,7 @@
 
             if (foundBook != null)
             {
-                Console.WriteLine($"\nBuku ditemukan:\n\nJudul:{foundBook.Title}\nPenulis: {foundBook.Author}\nTahun Terbit: {foundBook.PublicationYear}");
+                Console.WriteLine($"\nBuku ditemukan:\n\nJudul: {foundBook.Title}\nPenulis: {foundBook.Author}\nTahun Terbit: {foundBook.PublicationYear}");
             }
             else
             {
@@ -133,7 +146,14 @@
         {
             Console.Clear();
             Console.WriteLine("== Semua Buku dalam Katalog ==\n");
-            catalog.ListBook();
+            if (catalog.BookCount() == 0)
+            {
+                Console.WriteLine("Data buku masih kosong. Segera tambahkan buku.");
+            }
+            else
+            {
+                catalog.ListBook();
+            }
         }
     }
 }

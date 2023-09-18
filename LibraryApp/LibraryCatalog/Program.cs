@@ -36,5 +36,9 @@
                 Console.WriteLine("---------------------------");
             }
         }
+        public int BookCount()
+        {
+            return bookscatalog.Count;
+        }
     }
 }
