@@ -69,6 +69,12 @@
             Console.Write("Tahun Terbit: ");
             if (int.TryParse(Console.ReadLine(), out int publicationYear))
             {
+                if (publicationYear < 1900 || publicationYear > DateTime.Now.Year)
+                {
+                    ErrorHandler.HandleInvalidYear();
+                    return;
+                }
+
                 BookLib book = new(title, author, publicationYear);
                 catalog.AddBook(book);
                 Console.WriteLine("Buku berhasil ditambahkan ke katalog.");
